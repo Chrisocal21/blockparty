@@ -141,5 +141,6 @@ function uploadFile(file, fileName) {
             console.error('Upload error:', err);
         });
     };
+    // Only call this ONCE, outside the onload handler
     reader.readAsArrayBuffer(file);
 }
