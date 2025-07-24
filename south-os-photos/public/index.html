@@ -10,7 +10,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Arial', sans-serif;
             background: #f9f9f9;
@@ -38,3 +37,382 @@
             max-width: 600px;
             margin: 0 auto;
             padding: 25px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+            position: relative;
+            background: white;
+            border: 4px solid #1a1a1a;
+            border-radius: 10px;
+            padding: 35px 25px;
+            transform: rotate(-0.3deg);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .header h1 {
+            font-family: 'Arial', sans-serif;
+            font-size: 2.2em;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.1;
+            transform: rotate(0.5deg);
+        }
+
+        .header .subtitle {
+            font-family: 'Arial', sans-serif;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+            font-weight: 600;
+            text-transform: uppercase;
+            transform: rotate(-0.3deg);
+        }
+
+        .header p {
+            font-family: 'Arial', sans-serif;
+            font-size: 1.2em;
+            color: #333;
+            font-weight: 500;
+            transform: rotate(0.2deg);
+        }
+
+        .auth-section {
+            background: white;
+            border: 3px solid #1a1a1a;
+            border-radius: 10px;
+            padding: 35px 25px;
+            margin-bottom: 35px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            position: relative;
+            transform: rotate(0.1deg);
+            text-align: center;
+        }
+
+        .auth-section::before {
+            content: 'CONNECT TO SHARE';
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-1deg);
+            background: white;
+            color: #1a1a1a;
+            padding: 8px 20px;
+            font-family: 'Arial', sans-serif;
+            font-size: 0.9em;
+            font-weight: 600;
+            border: 2px solid #1a1a1a;
+            border-radius: 20px;
+        }
+
+        .google-btn {
+            background: #4285f4;
+            color: white;
+            border: none;
+            padding: 20px 30px;
+            border-radius: 10px;
+            font-size: 1.3em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            transform: rotate(-0.2deg);
+            font-family: 'Arial', sans-serif;
+            min-width: 250px;
+        }
+
+        .google-btn:hover {
+            background: #3367d6;
+            transform: rotate(-0.2deg) translateY(-2px);
+            box-shadow: 0 8px 20px rgba(66, 133, 244, 0.3);
+        }
+
+        .google-btn:active {
+            transform: rotate(-0.2deg) translateY(0);
+        }
+
+        .upload-section {
+            background: white;
+            border: 3px solid #1a1a1a;
+            border-radius: 10px;
+            padding: 35px 25px;
+            margin-bottom: 35px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            position: relative;
+            transform: rotate(0.2deg);
+            display: none;
+        }
+
+        .upload-section::before {
+            content: 'SNAP & SHARE';
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-1deg);
+            background: white;
+            color: #1a1a1a;
+            padding: 8px 20px;
+            font-family: 'Arial', sans-serif;
+            font-size: 0.9em;
+            font-weight: 600;
+            border: 2px solid #1a1a1a;
+            border-radius: 20px;
+        }
+
+        .upload-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .upload-btn {
+            background: white;
+            color: #1a1a1a;
+            border: 3px solid #1a1a1a;
+            padding: 24px 25px;
+            border-radius: 10px;
+            font-size: 1.3em;
+            font-weight: 600;
+            font-family: 'Arial', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            min-height: 68px;
+            position: relative;
+            transform: rotate(-0.3deg);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .upload-btn:hover {
+            background: #1a1a1a;
+            color: white;
+            transform: rotate(-0.3deg) translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .upload-btn:active {
+            transform: rotate(-0.3deg) translateY(0);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .camera-btn {
+            transform: rotate(0.3deg);
+        }
+
+        .camera-btn:hover {
+            transform: rotate(0.3deg) translateY(-2px);
+        }
+
+        .camera-btn:active {
+            transform: rotate(0.3deg) translateY(0);
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .loading-state {
+            display: none;
+            text-align: center;
+            padding: 25px;
+            color: #333;
+            font-size: 1.2em;
+            font-weight: 500;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 3px solid #e9ecef;
+            border-radius: 50%;
+            border-top-color: #1a1a1a;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 12px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            display: none;
+            background: white;
+            color: #1a1a1a;
+            padding: 20px;
+            border: 3px solid #1a1a1a;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 1.2em;
+            font-family: 'Arial', sans-serif;
+            transform: rotate(0.5deg);
+            position: relative;
+        }
+
+        .info-section {
+            background: white;
+            border: 3px solid #1a1a1a;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            position: relative;
+            transform: rotate(-0.2deg);
+            text-align: center;
+        }
+
+        .info-section h3 {
+            color: #1a1a1a;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            transform: rotate(0.3deg);
+        }
+
+        .info-section p {
+            color: #666;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        .camera-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .camera-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .camera-preview {
+            flex: 1;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            background: #333;
+        }
+
+        .camera-controls {
+            display: flex;
+            gap: 15px;
+        }
+
+        .camera-controls button {
+            flex: 1;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .capture-btn {
+            background: #4285f4;
+            color: white;
+        }
+
+        .cancel-btn {
+            background: #666;
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.9em;
+            }
+
+            .header .subtitle {
+                font-size: 1.5em;
+            }
+            
+            .upload-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>South O's</h1>
+            <div class="subtitle">Summer Block Party</div>
+            <p>Share your favorite moments with neighbors!</p>
+        </div>
+
+        <!-- Authentication Section -->
+        <div class="auth-section" id="authSection">
+            <h3>Connect to Share Photos</h3>
+            <p style="margin-bottom: 20px;">Quick one-time setup to upload your party pics!</p>
+            <button class="google-btn" onclick="signInWithGoogle()">
+                📸 Connect Google Drive
+            </button>
+        </div>
+
+        <!-- Upload Section (hidden until authenticated) -->
+        <div class="upload-section" id="uploadSection">
+            <div class="upload-buttons">
+                <button class="upload-btn camera-btn" onclick="openCamera()">
+                    📸 Take a Photo
+                </button>
+                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                    📱 Upload from Phone
+                </button>
+                <input type="file" id="fileInput" class="file-input" accept="image/*,video/*" onchange="handleFileUpload(event)" multiple>
+            </div>
+            
+            <div class="loading-state" id="loadingState">
+                <div class="loading-spinner"></div>
+                <p>Uploading to Google Drive...</p>
+            </div>
+            
+            <div class="success-message" id="successMessage">
+                📷 Upload successful! Thanks for sharing!
+            </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="info-section" id="infoSection">
+            <h3>How it works</h3>
+            <p>Your photos go directly to our party album where we can organize and share the best moments with everyone. No accounts needed - just connect once and upload!</p>
+        </div>
+    </div>
+
+    <!-- Camera Modal -->
+    <div class="camera-modal" id="cameraModal">
+        <div class="camera-container">
+            <video class="camera-preview" id="cameraPreview" autoplay playsinline></video>
+            <div class="camera-controls">
+                <button class="capture-btn" onclick="capturePhoto()">Capture</button>
+                <button class="cancel-btn" onclick="closeCamera()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google APIs -->
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://accounts.google.com/gsi/client"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+        }
