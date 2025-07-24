@@ -21,7 +21,6 @@ async function initializeGoogleAPIs() {
             gapi.load('client', resolve);
         });
         await gapi.client.init({
-            apiKey: API_KEY,
             discoveryDocs: [DISCOVERY_DOC],
         });
         gapiInited = true;
@@ -100,6 +99,7 @@ function uploadFile(file, fileName) {
         parents: [FOLDER_ID]
     };
     const accessToken = gapi.client.getToken().access_token;
+    console.log('Access token:', accessToken);
     const form = new FormData();
     form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
     form.append('file', file);
@@ -115,10 +115,11 @@ function uploadFile(file, fileName) {
     .then(async (res) => {
         console.log('Upload status:', res.status);
         let data;
+        let text = await res.text();
         try {
-            data = await res.json();
+            data = JSON.parse(text);
         } catch (e) {
-            data = { error: 'Failed to parse JSON', text: await res.text() };
+            data = { error: 'Failed to parse JSON', text };
         }
         if (!res.ok) {
             console.error('Upload failed with status', res.status, data);
