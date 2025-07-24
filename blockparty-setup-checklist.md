@@ -254,4 +254,4 @@ If technical issues arise during the party:
 ✅ The app looks exactly like your original design  
 
 **This gives you a custom, professional photo collection experience that feels made specifically for South O's Summer Block Party!**
- 
+  
