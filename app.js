@@ -32,14 +32,10 @@ async function initializeGoogleAPIs() {
         tokenClient = google.accounts.oauth2.initTokenClient({
             client_id: CLIENT_ID,
             scope: SCOPES,
-                        callback: (tokenResponse) => {
-                            if (tokenResponse.access_token) {
-                                console.log('Successfully authenticated!');
-                                showUploadSection();
+                            callback: (tokenResponse) => {
+                                if (tokenResponse.access_token) {
+                                    console.log('Successfully authenticated!');
+                                    showUploadSection();
+                                }
                             }
-                        }
-                    });
-                } catch (error) {
-                    console.error('Error initializing Google APIs:', error);
-                }
-            }
+                        });
