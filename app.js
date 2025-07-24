@@ -12,7 +12,12 @@ let gisInited = false;
 // Initialize Google APIs when page loads
 document.addEventListener('DOMContentLoaded', function() {
     initializeGoogleAPIs();
-});
+                        });
+
+    } catch (error) {
+        console.error('Error initializing Google APIs:', error);
+    }
+}
 
 async function initializeGoogleAPIs() {
     try {
