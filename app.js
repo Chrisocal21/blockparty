@@ -3,7 +3,7 @@ const CLIENT_ID = '400845283574-nlq9pjn99s13962jlusaktnqcmc6vmsv.apps.googleuser
 const API_KEY = 'AIzaSyCZmaZBl5yxH-6gEO9xKvKoQmADWJxANzE';
 const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
 const SCOPES = 'https://www.googleapis.com/auth/drive.file';
-const FOLDER_ID = '1gNXv8LlG2tUzvbAWy9Ru-BnX7HPF5Hl7'; // Replace with your actual folder ID
+const FOLDER_ID = '1YAPJhqefljrstmmase1Ue2DdtiO5HXrn'; // BP25
 
 let tokenClient;
 let gapiInited = false;
@@ -94,53 +94,60 @@ window.handleFileUpload = function(event) {
 
 function uploadFile(file, fileName) {
     document.getElementById('loadingState').classList.add('active');
+    // Show and reset progress bar
+    const progressBar = document.getElementById('uploadProgressBar');
+    if (progressBar) {
+        progressBar.style.display = 'block';
+        progressBar.value = 0;
+    }
     const metadata = {
-        name: fileName,
-        parents: [FOLDER_ID]
+        name: fileName
     };
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        const content = e.target.result;
-        const boundary = '-------314159265358979323846';
-        const delimiter = "\r\n--" + boundary + "\r\n";
-        const close_delim = "\r\n--" + boundary + "--";
-        const contentType = file.type || 'application/octet-stream';
-        const base64Data = btoa(String.fromCharCode.apply(null, new Uint8Array(content)));
-        const multipartRequestBody =
-            delimiter +
-            'Content-Type: application/json; charset=UTF-8\r\n\r\n' +
-            JSON.stringify(metadata) + '\r\n' +
-            delimiter +
-            'Content-Type: ' + contentType + '\r\n' +
-            'Content-Transfer-Encoding: base64\r\n' +
-            '\r\n' + base64Data + '\r\n' +
-            close_delim;
-
-        gapi.client.request({
-            path: '/upload/drive/v3/files',
-            method: 'POST',
-            params: { uploadType: 'multipart', fields: 'id' },
-            headers: {
-                'Content-Type': 'multipart/related; boundary=' + boundary
-            },
-            body: multipartRequestBody
-        }).then(function(response) {
-            console.log('Upload response:', response);
-            document.getElementById('loadingState').classList.remove('active');
-            if (response.status === 200 && response.result && response.result.id) {
-                document.getElementById('successMessage').classList.add('active');
-                setTimeout(() => {
-                    document.getElementById('successMessage').classList.remove('active');
-                }, 2500);
-            } else {
-                alert('Upload failed. See console for details.');
+    const form = new FormData();
+    form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+    form.append('file', file);
+    const accessToken = gapi.client.getToken().access_token;
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id', true);
+    xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
+    xhr.upload.onprogress = function(e) {
+        if (e.lengthComputable && progressBar) {
+            const percent = Math.round((e.loaded / e.total) * 100);
+            progressBar.value = percent;
+        }
+    };
+    xhr.onload = function() {
+        document.getElementById('loadingState').classList.remove('active');
+        if (progressBar) progressBar.style.display = 'none';
+        if (xhr.status === 200) {
+            try {
+                const data = JSON.parse(xhr.responseText);
+                if (data && data.id) {
+                    document.getElementById('successMessage').classList.add('active');
+                    setTimeout(() => {
+                        document.getElementById('successMessage').classList.remove('active');
+                    }, 2500);
+                } else {
+                    alert('Upload failed. No file ID returned.');
+                }
+            } catch (e) {
+                alert('Upload complete, but could not parse response.');
             }
-        }, function(err) {
-            document.getElementById('loadingState').classList.remove('active');
-            alert('Upload failed. Please try again.');
-            console.error('Upload error:', err);
-        });
+        } else {
+            let errorMsg = 'Upload failed. Error code: ' + xhr.status;
+            try {
+                const errData = JSON.parse(xhr.responseText);
+                if (errData && errData.error && errData.error.message) {
+                    errorMsg += '\n' + errData.error.message;
+                }
+            } catch (e) {}
+            alert(errorMsg);
+        }
     };
-    // Only call this ONCE, outside the onload handler
-    reader.readAsArrayBuffer(file);
+    xhr.onerror = function() {
+        document.getElementById('loadingState').classList.remove('active');
+        if (progressBar) progressBar.style.display = 'none';
+        alert('Upload failed due to a network error.');
+    };
+    xhr.send(form);
 }

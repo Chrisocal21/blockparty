@@ -1,0 +1,24 @@
+{
+  "name": "blockparty",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "dev": "serve -l 3000 .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chrisocal21/blockparty.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chrisocal21/blockparty/issues"
+  },
+  "homepage": "https://github.com/Chrisocal21/blockparty#readme",
+  "description": "",
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}

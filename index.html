@@ -284,6 +284,7 @@
           </button>
           <input type="file" id="fileInput" class="file-input" accept="image/*,video/*" onchange="handleFileUpload(event)" multiple>
         </div>
+        <progress id="uploadProgressBar" value="0" max="100" style="display:none;width:100%;margin-bottom:12px;"></progress>
         <div class="loading-state" id="loadingState">
           <div class="loading-spinner"></div>
           Uploading to Google Drive...
@@ -295,9 +296,26 @@
       <!-- Info Section -->
       <div class="info-section" id="infoSection">
         <h3>How it works</h3>
-        <p>Your photos go directly to our party album. No app download needed. Just connect and upload!</p>
+        <p>Your photos and videos go directly to our party album on Google Drive. No app download needed—just connect and upload!</p>
+        <ul style="text-align:left;max-width:480px;margin:16px auto 16px auto;">
+          <li>Lets you upload photos and videos directly to the organizer's Google Drive.</li>
+          <li>Requests Google Drive access only to upload your selected files—nothing else.</li>
+          <li>Hosted on a verified domain we own: <a href="https://www.southoblockparty.com" style="color:#ff7f50;">southoblockparty.com</a></li>
+          <li>See our <a href="privacy.html" style="color:#ff7f50;">Privacy Policy</a> for details on data use.</li>
+          <li>This page and our privacy policy are public and do not require login.</li>
+        </ul>
       </div>
     </div>
+    <details id="aboutSection" style="max-width:600px;margin:0 auto 0 auto;padding:0;background:none;border-radius:16px;box-shadow:none;color:#444;text-align:center;">
+      <summary style="font-size:1.15rem;font-weight:700;color:#ff7f50;cursor:pointer;padding:18px 0;outline:none;user-select:none;">About This App</summary>
+      <div style="background:#fff;border-radius:16px;box-shadow:0 2px 8px rgba(255,179,71,0.10);padding:24px 16px 12px 16px;margin-top:8px;">
+        <p><strong>South O's Block Party Photos</strong> is managed by the event organizers and hosted on our official domain. For questions, contact the organizers at the event.</p>
+      </div>
+    </details>
+    <footer style="text-align:center; margin:32px 0 16px 0; color:#888; font-size:1rem;">
+      <a href="privacy.html" style="color:#ff7f50; margin-right:18px;">Privacy Policy</a>
+      <a href="terms.html" style="color:#ff7f50;">Terms of Service</a>
+    </footer>
     <!-- Camera Modal -->
     <div class="camera-modal" id="cameraModal">
       <div class="camera-container">
