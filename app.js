@@ -1,9 +1,9 @@
 // Google Drive API Configuration
-const CLIENT_ID = '400845283574-nlq9pjn99s13962jlusaktnqcmc6vmsv.apps.googleusercontent.com';
+const CLIENT_ID = '944812798694-r4qdcqtg3lnmlcmj1nhaju6k4nn7rvs4.apps.googleusercontent.com';
 const API_KEY = 'AIzaSyCZmaZBl5yxH-6gEO9xKvKoQmADWJxANzE';
 const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
 const SCOPES = 'https://www.googleapis.com/auth/drive.file';
-const FOLDER_ID = '1YAPJhqefljrstmmase1Ue2DdtiO5HXrn'; // BP25
+const FOLDER_ID = '152QjFIP6B5MLkBN_DrumNJzAh8PwvlqV'; // BP25
 
 let tokenClient;
 let gapiInited = false;
