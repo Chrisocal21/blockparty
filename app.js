@@ -108,16 +108,21 @@ function uploadFile(file, fileName) {
         headers: new Headers({ 'Authorization': 'Bearer ' + accessToken }),
         body: form
     })
-    .then((res) => res.json())
-    .then(() => {
+    .then((res) => {
+        console.log('Upload status:', res.status);
+        return res.json();
+    })
+    .then((data) => {
+        console.log('Upload response:', data);
         document.getElementById('loadingState').classList.remove('active');
         document.getElementById('successMessage').classList.add('active');
         setTimeout(() => {
             document.getElementById('successMessage').classList.remove('active');
         }, 2500);
     })
-    .catch(() => {
+    .catch((err) => {
         document.getElementById('loadingState').classList.remove('active');
         alert('Upload failed. Please try again.');
+        console.error('Upload error:', err);
     });
 }
