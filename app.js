@@ -103,22 +103,39 @@ function uploadFile(file, fileName) {
     const form = new FormData();
     form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
     form.append('file', file);
-    fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id', {
+    const url = 'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id';
+    const headers = new Headers({ 'Authorization': 'Bearer ' + accessToken });
+    console.log('Uploading to URL:', url);
+    console.log('Request headers:', headers);
+    fetch(url, {
         method: 'POST',
-        headers: new Headers({ 'Authorization': 'Bearer ' + accessToken }),
+        headers: headers,
         body: form
     })
-    .then((res) => {
+    .then(async (res) => {
         console.log('Upload status:', res.status);
-        return res.json();
+        let data;
+        try {
+            data = await res.json();
+        } catch (e) {
+            data = { error: 'Failed to parse JSON', text: await res.text() };
+        }
+        if (!res.ok) {
+            console.error('Upload failed with status', res.status, data);
+        }
+        return data;
     })
     .then((data) => {
         console.log('Upload response:', data);
         document.getElementById('loadingState').classList.remove('active');
-        document.getElementById('successMessage').classList.add('active');
-        setTimeout(() => {
-            document.getElementById('successMessage').classList.remove('active');
-        }, 2500);
+        if (data && data.id) {
+            document.getElementById('successMessage').classList.add('active');
+            setTimeout(() => {
+                document.getElementById('successMessage').classList.remove('active');
+            }, 2500);
+        } else {
+            alert('Upload failed. See console for details.');
+        }
     })
     .catch((err) => {
         document.getElementById('loadingState').classList.remove('active');
