@@ -268,31 +268,13 @@
       </div>
       <!-- Authentication Section -->
       <div class="auth-section" id="authSection">
-        <h3>Connect to Share Photos</h3>
-        <button class="google-btn" onclick="signInWithGoogle()">
-          📸 Connect Google Drive
-        </button>
+        <h3>Upload Your Photos</h3>
+        <a href="https://forms.gle/iiVsdP9hdsqbqzVX6" target="_blank" rel="noopener" class="google-btn" style="text-align:center;display:block;text-decoration:none;">
+          📸 Upload Photos via Google Form
+        </a>
       </div>
       <!-- Upload Section (hidden until authenticated) -->
-      <div class="upload-section" id="uploadSection">
-        <div class="upload-buttons">
-          <button class="upload-btn camera-btn" onclick="openCamera()">
-            📸 Take a Photo
-          </button>
-          <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
-            📱 Upload from Phone
-          </button>
-          <input type="file" id="fileInput" class="file-input" accept="image/*,video/*" onchange="handleFileUpload(event)" multiple>
-        </div>
-        <progress id="uploadProgressBar" value="0" max="100" style="display:none;width:100%;margin-bottom:12px;"></progress>
-        <div class="loading-state" id="loadingState">
-          <div class="loading-spinner"></div>
-          Uploading to Google Drive...
-        </div>
-        <div class="success-message" id="successMessage">
-          📷 Upload successful! Thanks for sharing!
-        </div>
-      </div>
+      <!-- Upload section replaced by Google Form button above -->
       <!-- About & How it Works Section (dropdown, professional) -->
       <details id="aboutInfoSection" style="max-width:600px;margin:0 auto 0 auto;padding:0 0 0 0;background:none;border-radius:16px;box-shadow:none;color:#444;text-align:center;">
         <summary style="font-size:1.15rem;font-weight:700;color:#ff7f50;cursor:pointer;padding:18px 0;outline:none;user-select:none;">About This App & How It Works</summary>
@@ -316,18 +298,8 @@
       <span style="color:#888;font-weight:600;">Powered by Rice</span>
     </div>
     <!-- Camera Modal -->
-    <div class="camera-modal" id="cameraModal">
-      <div class="camera-container">
-        <video class="camera-preview" id="cameraPreview" autoplay playsinline></video>
-        <div class="camera-controls">
-          <button class="capture-btn" onclick="capturePhoto()">Capture</button>
-          <button class="cancel-btn" onclick="closeCamera()">Cancel</button>
-        </div>
-      </div>
-    </div>
+    <!-- Camera modal removed for Google Form version -->
     <!-- Google APIs -->
-    <script src="https://apis.google.com/js/api.js"></script>
-    <script src="https://accounts.google.com/gsi/client"></script>
-    <script src="app.js"></script>
+    <!-- Google Drive scripts removed for Google Form version -->
 </body>
 </html>
