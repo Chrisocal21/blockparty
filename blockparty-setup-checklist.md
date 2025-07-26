@@ -55,12 +55,20 @@
 ### **Step 2: Update JavaScript (45 minutes)**
 - [ ] Replace the demo functions in your existing JavaScript
 - [ ] Add the Google Drive API integration code
-- [ ] Update these three values in your code:
-  ```javascript
-  const CLIENT_ID = 'your-actual-client-id-here';
-  const API_KEY = 'your-actual-api-key-here';
-  const FOLDER_ID = 'your-drive-folder-id-here';
+- [ ] **Do NOT hardcode your API keys or client IDs in your code.**
+- [ ] Instead, create a `.env.local` file in your project root (this file is ignored by git):
+  ```env
+  API_KEY=your-actual-api-key-here
+  CLIENT_ID=your-actual-client-id-here
+  FOLDER_ID=your-drive-folder-id-here
   ```
+- [ ] In your code, reference these using environment variables (for example, in Next.js or Vercel):
+  ```javascript
+  const CLIENT_ID = process.env.CLIENT_ID;
+  const API_KEY = process.env.API_KEY;
+  const FOLDER_ID = process.env.FOLDER_ID;
+  ```
+- [ ] **Never commit your .env.local file to your repository.**
 
 ### **Step 3: Add Real Upload Functions (45 minutes)**
 - [ ] Replace `takePhoto()` with real camera functionality
@@ -96,6 +104,7 @@
   .env
   *.log
   ```
+- [ ] **Double check that `.env.local` is listed in your `.gitignore` so your API keys are never pushed to GitHub.**
 - [ ] **Push to GitHub**:
   ```bash
   git init
