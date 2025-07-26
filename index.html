@@ -274,6 +274,10 @@
         <a href="https://forms.gle/iiVsdP9hdsqbqzVX6" target="_blank" rel="noopener" class="google-btn" style="text-align:center;display:block;text-decoration:none;">
           📸 Upload Photos via Google Form
         </a>
+        <button id="lineupBtn" style="margin-top:18px;background:#00a4dd;color:#fff;border:none;border-radius:16px;font-size:1.15rem;font-weight:700;padding:18px 0;width:100%;box-shadow:0 2px 8px rgba(0,164,221,0.10);cursor:pointer;transition:background 0.2s,transform 0.1s;">🎸 Lineup</button>
+        <div id="lineupImageContainer" style="display:none;margin-top:22px;text-align:center;">
+          <img id="lineupImage" src="/assets/images/lineup.png" alt="South O's Block Party Lineup" style="max-width:100%;border-radius:18px;box-shadow:0 2px 16px rgba(0,164,221,0.10);">
+        </div>
       </div>
       <!-- Upload Section (hidden until authenticated) -->
       <!-- Upload section replaced by Google Form button above -->
@@ -300,6 +304,24 @@
       <span style="color:#18191b;font-weight:600;">ChrisOC|2025</span>
       <span style="color:#18191b;font-weight:600;">DAVAPALOOZA</span>
     </div>
+    <script>
+      // Show/hide lineup image on button click
+      document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.getElementById('lineupBtn');
+        var container = document.getElementById('lineupImageContainer');
+        if(btn && container) {
+          btn.addEventListener('click', function() {
+            if(container.style.display === 'none') {
+              container.style.display = 'block';
+              btn.textContent = 'Hide Lineup';
+            } else {
+              container.style.display = 'none';
+              btn.textContent = '🎸 Lineup';
+            }
+          });
+        }
+      });
+    </script>
     <!-- Camera Modal -->
     <!-- Camera modal removed for Google Form version -->
     <!-- Google APIs -->
